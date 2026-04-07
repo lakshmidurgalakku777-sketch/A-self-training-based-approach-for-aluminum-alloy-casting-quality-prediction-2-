@@ -1,0 +1,53 @@
+{% extends 'users/user_base.html' %}
+{% block title %}User Home - Aluminum Alloy Casting Quality Prediction{% endblock %}
+{% block content %}
+<div class="container mx-auto p-6 max-w-2xl">
+
+    <!-- User Welcome Section -->
+    <section class="bg-gray-800 bg-opacity-80 rounded-lg p-8 shadow-lg fade-in text-center">
+
+        <h1 class="text-4xl font-bold text-white mb-4 flex items-center justify-center">
+            <i class="fas fa-user mr-2"></i> Welcome, {{ user_name }}!
+        </h1>
+
+        <!-- ✅ SAFE IMAGE DISPLAY -->
+        {% if user_image %}
+            <img src="{{ user_image }}" alt="{{ user_name }}'s Image"
+                 class="w-36 h-36 rounded-full object-cover mx-auto mb-6 border-4 border-blue-600 shadow-md">
+        {% else %}
+            <!-- Default image if admin -->
+            <img src="https://via.placeholder.com/150"
+                 alt="Default Image"
+                 class="w-36 h-36 rounded-full object-cover mx-auto mb-6 border-4 border-blue-600 shadow-md">
+        {% endif %}
+
+        <p class="text-lg text-gray-300 mb-6">
+            Login Time: {{ login_time }}
+        </p>
+
+        <div class="text-gray-200 text-lg mb-6">
+            <p>
+                You're now in the User Panel for the Aluminum Alloy Casting Quality Prediction system.
+                Use the navigation above to calibrate models, estimate casting quality, or manage your session.
+            </p>
+        </div>
+
+        <a href="{% url 'predict_quality' %}"
+           class="inline-block bg-purple-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-purple-700 transition-all duration-300 flex items-center justify-center space-x-2 mx-auto">
+            <i class="fas fa-chart-line"></i>
+            <span>Start Quality Estimation</span>
+        </a>
+
+    </section>
+</div>
+
+<style>
+    .fade-in {
+        animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aluminum Alloy Casting Quality Projection{% endblock %}</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #1e3a8a, #1e1b4b);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            font-family: 'Inter', sans-serif;
+        }
+        .nav-button {
+            transition: all 0.3s ease;
+            transform: perspective(1px) translateZ(0);
+        }
+        .nav-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            background-color: #3b82f6;
+        }
+        .nav-button:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        .slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; transform: translateY(20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideIn {
+            0% { opacity: 0; transform: translateX(-20px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+    </style>
+</head>
+<body class="text-gray-100">
+    <!-- Header Section -->
+    <header class="bg-gradient-to-r from-blue-900 to-indigo-950 p-8 shadow-lg">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-white animate-pulse">
+            🛠️ Aluminum Alloy Casting Quality Projection
+        </h1>
+        <p class="text-lg md:text-xl text-center mt-4 text-blue-200 slide-in">
+            A Self-Training Approach for Real-Time Quality Assurance
+        </p>
+    </header>
+
+    <!-- Navigation Section -->
+    <nav class="flex flex-wrap justify-center gap-4 p-6">
+        <a href="/" class="nav-button bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center space-x-2">
+            <i class="fas fa-home"></i>
+            <span>Dashboard</span>
+        </a>
+        <a href="{% url 'register' %}" class="nav-button bg-green-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center space-x-2">
+            <i class="fas fa-user-plus"></i>
+            <span>Enroll</span>
+        </a>
+        <a href="{% url 'user_login' %}" class="nav-button bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center space-x-2">
+            <i class="fas fa-sign-in-alt"></i>
+            <span>Sign In</span>
+        </a>
+        <a href="{% url 'admin_login' %}" class="nav-button bg-red-600 text-white font-semibold py-3 px-6 rounded-lg flex items-center space-x-2">
+            <i class="fas fa-user-shield"></i>
+            <span>Admin Access</span>
+        </a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="container mx-auto p-6 text-center fade-in">
+        <h2 class="text-3xl font-bold text-white mb-4">Welcome to the Future of Alloy Casting</h2>
+        <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+            Our cutting-edge self-training system leverages advanced machine learning to predict and ensure the quality of aluminum alloy castings in real-time. Explore the dashboard, enroll as a user, or access administrative controls to streamline your quality assurance process.
+        </p>
+        <a href="{% url 'register' %}" class="mt-6 inline-block bg-blue-500 text-white font-semibold py-3 px-8 rounded-lg hover:bg-blue-600 transition-all duration-300">
+            Get Started 🚀
+        </a>
+    </section>
+
+    <!-- Main Content Section -->
+    <main class="flex-grow container mx-auto p-6 fade-in">
+        {% block content %}
+        {% endblock %}
+    </main>
+
+    <!-- Footer Section -->
+    <!-- <footer class="bg-gray-900 text-center text-gray-400 py-6">
+        <p>© 2025 Aluminum Alloy Casting Quality Prediction. All rights reserved.</p>
+        <p class="mt-2">Powered by Advanced Machine Learning</p>
+    </footer> -->
+</body>
+</html>

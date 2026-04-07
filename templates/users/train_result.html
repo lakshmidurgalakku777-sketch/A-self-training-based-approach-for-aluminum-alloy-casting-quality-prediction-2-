@@ -1,0 +1,87 @@
+{% extends 'users/user_base.html' %}
+{% block title %}Training Results - Aluminum Alloy Casting Quality Prediction{% endblock %}
+{% block content %}
+<div class="container mx-auto p-6 max-w-4xl">
+    <!-- Training Results Section -->
+    <section class="bg-gray-800 bg-opacity-80 rounded-lg p-8 shadow-lg fade-in">
+        <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+            <i class="fas fa-chart-bar mr-2"></i> Aluminum Casting Quality - Model Evaluation
+        </h2>
+
+        <!-- Model Metrics -->
+        {% for model, metrics in results.items %}
+        <div class="mb-8">
+            <h3 class="text-2xl font-semibold text-blue-200 mb-4 flex items-center">
+                <i class="fas fa-cogs mr-2"></i> {{ model }} Metrics
+            </h3>
+            <ul class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-gray-300">
+                {% for key, value in metrics.items %}
+                <li class="bg-blue-900 bg-opacity-50 p-3 rounded-lg">
+                    <strong class="text-blue-200">{{ key|capfirst }}:</strong> {{ value }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% empty %}
+        <p class="text-gray-400 text-center">No metrics available.</p>
+        {% endfor %}
+
+        <!-- ROC Curves -->
+        <h3 class="text-2xl font-semibold text-blue-200 mb-4 flex items-center mt-8">
+            <i class="fas fa-chart-line mr-2"></i> ROC Curves
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+                <img src="{{ roc_svm }}" alt="SVM ROC Curve" class="w-full rounded-lg shadow-md">
+                <p class="text-center text-gray-300 mt-2">SVM ROC Curve</p>
+            </div>
+            <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+                <img src="{{ roc_xgb }}" alt="XGBoost ROC Curve" class="w-full rounded-lg shadow-md">
+                <p class="text-center text-gray-300 mt-2">XGBoost ROC Curve</p>
+            </div>
+        </div>
+
+        <!-- Confusion Matrices -->
+        <h3 class="text-2xl font-semibold text-blue-200 mb-4 flex items-center">
+            <i class="fas fa-th mr-2"></i> Confusion Matrices
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+                <img src="{{ conf_svm }}" alt="SVM Confusion Matrix" class="w-full rounded-lg shadow-md">
+                <p class="text-center text-gray-300 mt-2">SVM Confusion Matrix</p>
+            </div>
+            <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+                <img src="{{ conf_xgb }}" alt="XGBoost Confusion Matrix" class="w-full rounded-lg shadow-md">
+                <p class="text-center text-gray-300 mt-2">XGBoost Confusion Matrix</p>
+            </div>
+        </div>
+
+        <!-- Correlation Matrix -->
+        <h3 class="text-2xl font-semibold text-blue-200 mb-4 flex items-center">
+            <i class="fas fa-table mr-2"></i> Correlation Matrix
+        </h3>
+        <div class="bg-blue-900 bg-opacity-50 p-4 rounded-lg">
+            <img src="{{ corr_image }}" alt="Correlation Matrix" class="w-full rounded-lg shadow-md">
+            <p class="text-center text-gray-300 mt-2">Correlation Matrix</p>
+        </div>
+
+        <!-- Back to Calibration Button -->
+        <div class="mt-8 text-center">
+            <a href="{% url 'train_models' %}" class="inline-block bg-green-600 text-white font-semibold py-3 px-8 rounded-lg hover:bg-green-700 transition-all duration-300 flex items-center justify-center space-x-2 mx-auto">
+                <i class="fas fa-redo"></i>
+                <span>Recalibrate Models</span>
+            </a>
+        </div>
+    </section>
+</div>
+
+<style>
+    .fade-in {
+        animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}

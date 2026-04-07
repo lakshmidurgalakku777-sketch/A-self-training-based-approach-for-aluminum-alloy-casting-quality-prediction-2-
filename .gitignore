@@ -1,0 +1,20 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django stuff:
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# Media / Uploaded files
+media/
+
+# OS generated files:
+.DS_Store
+Thumbs.db
+
+# IDEs
+.vscode/
+.idea/

@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}Home - Aluminum Alloy Casting Quality Estimation{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-6">
+
+    <!-- Project Overview -->
+    <section class="bg-gray-800 bg-opacity-80 rounded-lg p-8 mb-8 shadow-lg fade-in">
+        <h2 class="text-3xl font-bold text-white mb-4 flex items-center">
+            <i class="fas fa-cogs mr-2"></i> Project Overview
+        </h2>
+        <p class="text-gray-300 text-lg mb-2">
+            <strong>Aluminum Alloy Casting Quality Estimation</strong> is a machine learning-powered system designed to automate and improve the quality inspection process in aluminum alloy casting. It uses sensor and process parameters to classify each sample as <strong>Acceptable</strong> or <strong>Defective</strong>.
+        </p>
+        <p class="text-gray-300 text-lg">
+            This solution not only enhances production efficiency and reduces manual inspection effort, but also ensures higher reliability using automated predictions and intelligent analytics.
+        </p>
+    </section>
+
+    <!-- Algorithms Used -->
+    <section class="mb-8 fade-in">
+        <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+            <i class="fas fa-brain mr-2"></i> Algorithms Used
+        </h2>
+        <ul class="list-disc text-gray-300 text-lg ml-8">
+            <li>🔹 <strong>Support Vector Machine (SVM)</strong> - used for robust binary classification with RBF kernel.</li>
+            <li>🔹 <strong>XGBoost</strong> - gradient boosting decision tree model for high accuracy and interpretability.</li>
+            <li>🔹 <strong>Logistic Regression</strong> (optional) - for baseline comparison and probability outputs.</li>
+        </ul>
+    </section>
+
+    <!-- Dataset Info -->
+    <section class="mb-8 fade-in">
+        <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+            <i class="fas fa-database mr-2"></i> Dataset Details
+        </h2>
+        <p class="text-gray-300 text-lg">
+            The model is trained on a balanced dataset containing process parameters like Pouring Temperature, Mold Temperature, Injection Speed, and chemical compositions (Al, Si, Cu, etc.). The dataset is sourced from industrial simulations and quality-labeled.
+        </p>
+    </section>
+
+    <!-- Features -->
+    <section class="mb-8 fade-in">
+        <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+            <i class="fas fa-tools mr-2"></i> Key Features
+        </h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-blue-900 bg-opacity-80 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-200 mb-2">📊 Performance Metrics</h3>
+                <p class="text-gray-300">Accuracy, Precision, Recall, F1 Score, AUC – all displayed clearly after training.</p>
+            </div>
+            <div class="bg-blue-900 bg-opacity-80 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-200 mb-2">📈 Visual Analytics</h3>
+                <p class="text-gray-300">Confusion Matrix, ROC Curve, Correlation Heatmap to understand data and model performance.</p>
+            </div>
+            <div class="bg-blue-900 bg-opacity-80 p-6 rounded-lg shadow-lg transition-transform hover:scale-105">
+                <h3 class="text-xl font-semibold text-blue-200 mb-2">⚙️ Real-Time Prediction</h3>
+                <p class="text-gray-300">Use the form to input new casting values and instantly estimate the output quality.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workflow -->
+    <section class="bg-indigo-800 bg-opacity-90 rounded-lg p-6 mb-8 shadow-lg fade-in">
+        <h2 class="text-3xl font-bold text-white mb-4 flex items-center">
+            <i class="fas fa-project-diagram mr-2"></i> Workflow Summary
+        </h2>
+        <ol class="list-decimal text-gray-200 text-lg ml-6">
+            <li>📥 Upload or load the dataset from `media/` folder.</li>
+            <li>⚙️ Train models: SVM, XGBoost, and optionally Logistic Regression.</li>
+            <li>📁 Save trained models and scalers to `media/models/`.</li>
+            <li>📊 Generate and store graphs to `media/graphs/` (ROC, Confusion Matrix, Correlation Heatmap).</li>
+            <li>📝 Use prediction form to submit new values and display output with confidence score.</li>
+        </ol>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="text-center bg-gradient-to-r from-green-700 to-teal-700 rounded-lg p-8 fade-in">
+        <h2 class="text-3xl font-bold text-white mb-4">Start Enhancing Your Production Line</h2>
+        <p class="text-gray-200 text-lg mb-6">
+            Get started with automated quality assurance powered by machine learning. Train, Predict, and Optimize!
+        </p>
+        <a href="{% url 'train_models' %}" class="inline-block bg-yellow-400 text-black font-semibold py-3 px-8 rounded-lg hover:bg-yellow-500 transition-all duration-300">
+            🚀 Train Models Now
+        </a>
+    </section>
+</div>
+
+<style>
+    .fade-in {
+        animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+</style>
+{% endblock %}

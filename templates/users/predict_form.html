@@ -1,0 +1,92 @@
+{% extends 'users/user_base.html' %}
+{% block title %}Predict Quality - Aluminum Alloy Casting Quality Prediction{% endblock %}
+{% block content %}
+<div class="container mx-auto p-6 max-w-lg">
+    <!-- Casting Parameters Form Section -->
+    <section class="bg-gray-800 bg-opacity-80 rounded-lg p-8 shadow-lg fade-in">
+        <h2 class="text-3xl font-bold text-white mb-6 flex items-center">
+            <i class="fas fa-chart-line mr-2"></i> Enter Casting Parameters
+        </h2>
+
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+
+            <div class="space-y-4">
+
+                <!-- ✅ Updated Loop (instead of form.as_p) -->
+                {% for field in form %}
+                    <div>
+                        {{ field.label_tag }}
+                        {{ field }}
+
+                        <!-- ✅ Display Help Text -->
+                        {% if field.help_text %}
+                            <p class="text-gray-400 text-sm mt-1">
+                                {{ field.help_text }}
+                            </p>
+                        {% endif %}
+
+                        <!-- ✅ Error Display -->
+                        {% if field.errors %}
+                            <p class="text-red-400 text-sm">
+                                {{ field.errors }}
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+
+            </div>
+
+            <button type="submit" class="w-full bg-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:bg-purple-700 transition-all duration-300 flex items-center justify-center space-x-2">
+                <i class="fas fa-check"></i>
+                <span>Predict Quality</span>
+            </button>
+        </form>
+    </section>
+</div>
+
+<style>
+    .fade-in {
+        animation: fadeIn 1s ease-in;
+    }
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(20px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Labels */
+    form label {
+        display: block;
+        color: #d1d5db;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+    }
+
+    /* Inputs */
+    form input,
+    form select,
+    form textarea {
+        width: 100%;
+        padding: 0.75rem;
+        border-radius: 0.5rem;
+        background-color: #374151;
+        color: #f9fafb;
+        border: 1px solid #4b5563;
+        transition: all 0.3s ease;
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+        outline: none;
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+
+    /* ✅ Help text styling */
+    .text-gray-400 {
+        font-size: 13px;
+        line-height: 1.4;
+    }
+</style>
+{% endblock %}
